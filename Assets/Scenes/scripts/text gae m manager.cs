@@ -7,12 +7,15 @@ public class textgaemmanager : MonoBehaviour
     public TextMeshProUGUI storyTextMeshPro, hpTextMeshPro, staminaTextMeshPro;
     public string storytext;
     public int hp, stam;
-    public GameObject lv1choice,lv2choice;
-
+    public GameObject lv1choice,lv2choice,helt,stamy;
+    
     // Start is called before the first frame update
     void Start()
     {
-       
+       lv1choice.SetActive(false);
+        lv2choice.SetActive(false);
+        storytext = "Oh chosen one you are to serve me and receive grate power. There is just some thing i ask,... kill for me. will you serve?";
+
     }
 
     // Update is called once per frame
@@ -22,6 +25,15 @@ public class textgaemmanager : MonoBehaviour
        hpTextMeshPro.text = hp.ToString();
        staminaTextMeshPro.text = stam.ToString();
     }
+    public void go()
+    {
+        lv1choice.SetActive(true);
+        lv2choice.SetActive(true);
+        stamy.SetActive(true);
+        helt.SetActive(true);
+    }
+    public void sutop()
+    { Application.Quit(); }
 
     public void gatlinggun()
     {
@@ -39,7 +51,7 @@ public class textgaemmanager : MonoBehaviour
     }
     public void Grenade()
     {
-        storytext = "!You fired your only grenade... it didn't hit much, their coming for you, sudenly the gas stations start exploding, killing all the zombies. You were so lucky that you were unscathed";
+        storytext = "!You fired your only grenade... it didn't hit much, their coming for you, suddenly the gas stations start exploding, killing all the zombies. You were so lucky that you were unscathed";
         lv1choice.SetActive(false);
         lv2choice.SetActive(true);
 
