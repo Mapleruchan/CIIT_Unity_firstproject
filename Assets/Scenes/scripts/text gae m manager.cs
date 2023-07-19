@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+
 public class textgaemmanager : MonoBehaviour
 {
     public TextMeshProUGUI storyTextMeshPro, hpTextMeshPro, staminaTextMeshPro;
     public string storytext;
     public int hp, stam;
-    public GameObject onward2, onward3, onward4, onward5, evo, onward, menu, succumb, lv1choice, lv2choice, lv3choice, lv4choice, lv5choice, helt, stamy, end1, end2, end3, end4, end5;
+    public GameObject revive, gamo,onward2, onward3, onward4, onward5, evo, onward, menu, succumb, lv1choice, lv2choice, lv3choice, lv4choice, lv5choice, helt, stamy, end1, end2, end3, end4, end5;
 
     // Start is called before the first frame update
     void Start()
@@ -61,8 +63,15 @@ public class textgaemmanager : MonoBehaviour
     public void next()
     {
         storytext = "!A POISONOUS MONSTER SHOWS UP, WHAT DO YOU DO?";
-        lv2choice.SetActive(true);
         onward.SetActive(false);
+        if (hp <= 0)
+        {
+            storytext = "Blessings of slavery: your soul have been taken by the goddess";
+            gamo.SetActive(false);
+            revive.SetActive(true);
+        }
+        lv2choice.SetActive(true);
+        
 
     }
 
@@ -84,21 +93,28 @@ public class textgaemmanager : MonoBehaviour
     {
         storytext = "!This is the stupidest choice one could ever make. Why try eating a live and poisonous monster…\r\n…You actually absorbed its power and healed yourself., HOWW?";
         lv2choice.SetActive(false);
-        end2.SetActive(true);
+        succumb.SetActive(true);
 
     }
 
     public void next2()
     {
         storytext = "Stage: 3\r\nA vampire appears and hovers above you, how will you kill?";
+        onward2.SetActive(false);
+        if (hp <= 0)
+        {
+            storytext = "Blessings of slavery: your soul have been taken by the goddess";
+            gamo.SetActive(false);
+            revive.SetActive(true);
+        }
         lv3choice.SetActive(true);
-        onward3.SetActive(false);
+        
 
     }
 
     public void zawarudo()
     {
-        storytext = "!You grab the excalibur and unleashed its full power and slashed it down to the monster. The monster has already sneaked on you while you were charging power";
+        storytext = "You stop time and throw a spear at them. “When time begins this spear will hit the vampire”. The vampire has moved in stopped time to counter you!!\r\n";
         lv3choice.SetActive(false);
         hp -= 3;
         onward3.SetActive(true);
@@ -121,8 +137,15 @@ public class textgaemmanager : MonoBehaviour
     public void next3()
     {
         storytext = "Stage: 4\r\nAssassins come for your head but isn't it you who itches to kill?";
+         onward3.SetActive(false);
+        if (hp <= 0)
+        {
+            storytext = "Blessings of slavery: your soul have been taken by the goddess";
+            gamo.SetActive(false);
+            revive.SetActive(true);
+        }
         lv4choice.SetActive(true);
-        onward3.SetActive(false);
+       
 
     }
 
@@ -133,6 +156,12 @@ public class textgaemmanager : MonoBehaviour
         lv4choice.SetActive(false);
         hp -= 2;
         end3.SetActive(true);
+        if (hp <= 0)
+        {
+            storytext = "Blessings of slavery: your soul have been taken by the goddess";
+            gamo.SetActive(false);
+            revive.SetActive(true);
+        }
     }
 
 
@@ -154,8 +183,16 @@ public class textgaemmanager : MonoBehaviour
     public void next4()
     {
         storytext = "Stage: 5 \r\nA fallen angel stands before you. How will you beat the immortal?";
+         onward4.SetActive(false);
+        if (hp <= 0)
+        {
+            storytext = "Blessings of slavery: your soul have been taken by the goddess";
+            gamo.SetActive(false);
+            revive.SetActive(true);
+
+        }
         lv5choice.SetActive(true);
-        onward4.SetActive(false);
+       
 
     }
 
@@ -163,7 +200,7 @@ public class textgaemmanager : MonoBehaviour
     {
         storytext = "With space CQC you begin throwing grenades and chainsaws. “You think this is enough to kill a being like me”. The thing you threw fell on the abyss and caused a rip which sucked the angel in.\r\n";
 
-        lv4choice.SetActive(false);
+        lv5choice.SetActive(false);
 
         end4.SetActive(true);
     }
@@ -172,24 +209,32 @@ public class textgaemmanager : MonoBehaviour
     public void heart()
     {
         storytext = "!You launch a thunder javelin towards its heart but it just goes through. The angel uses retribution on you";
-        lv4choice.SetActive(false);
+        lv5choice.SetActive(false);
         hp -= 5;
-        onward5.SetActive(true);
+        end4.SetActive(true);
     }
     public void chasm()
     {
         storytext = "You try to push it towards the void but it pushed you instead\r\n";
-        lv4choice.SetActive(false);
+        lv5choice.SetActive(false);
         hp -= 5;
-        onward5.SetActive(true);
+        end4.SetActive(true);
 
     }
 
     public void next5()
     {
-        storytext = "Stage: EVO( if player chooses ‘eat it ’ in stage 2 ) \r\nThe  POISONOUS MONSTER that you eat is beginning to react in your body. An army suddenly shows up…";
+        storytext = "Stage: EVO \r\nThe  POISONOUS MONSTER that you eat is beginning to react in your body. An army suddenly shows up…";
         evo.SetActive(true);
-        onward5.SetActive(false);
+         if (hp <= 0)
+        {
+            storytext = "Blessings of slavery: your soul have been taken by the goddess";
+            gamo.SetActive(false);
+            revive.SetActive(true);
+        }
+        succumb.SetActive(false);
+
+      
 
     }
 
@@ -205,15 +250,15 @@ public class textgaemmanager : MonoBehaviour
 
     public void jump()
     {
-        storytext = "!You launch a thunder javelin towards its heart but it just goes through. The angel uses retribution on you";
-        lv4choice.SetActive(false);
+        storytext = "You turn into a giant armadillo and roll over everything";
+        evo.SetActive(false);
         hp -= 2;
         end2.SetActive(true);
     }
     public void crave()
     {
-        storytext = "You try to push it towards the void but it pushed you instead\r\n";
-        lv4choice.SetActive(false);
+        storytext = "You turn into an abyss devourer and suck them in your belly";
+        evo.SetActive(false);
         hp -= 3;
         end2.SetActive(true);
 
@@ -224,7 +269,8 @@ public class textgaemmanager : MonoBehaviour
     {
         storytext = "Blessings of the beast- the poison that has mixed with your body caused you to transform to an uncontrollable beast. The goddess, being impressed with the way you ate the monster to death caused her to give you full control of your new power.";
 
-        end2.SetActive(false);
+        gamo.SetActive(false);
+        revive.SetActive(true);
     }
 
 
@@ -232,16 +278,38 @@ public class textgaemmanager : MonoBehaviour
     {
         storytext = "upon killing yourself along with the whole horde of zombies and the rest of existence, the god of killings have been amazed on how you reaped destruction that she revived you and gave you the power to explode and disintegrate planets however, it leaves you immobile for a while after you use it and hurts everytime you activates you";
 
-        lv1choice.SetActive(false);
-
+        gamo.SetActive(false);
+        revive.SetActive(true);
 
     }
 
     public void tyrant()
     {
+        if (hp <= 0)
+        {
+            storytext = "Blessings of slavery: your soul have been taken by the goddess";
+            gamo.SetActive(false);
+            revive.SetActive(true);
+        }
         storytext = "Ending 2: Blessings of tyrant- you cause an explosion around you and gain the power to transform to a tyrant. You have impressed the goddess that she decides to save you to wreak havoc for her";
-        lv4choice.SetActive(false);
+        gamo.SetActive(false);
+        revive.SetActive(true);
 
+
+    }
+    public void immortal()
+    {
+        storytext = "Blessings of Immortality: you survived the challenge, you achived immortality";
+        
+        gamo.SetActive(false);
+        revive.SetActive(true);
+
+
+    }
+    public void gone()
+    {
+
+        Application.Quit();
 
 
     }
